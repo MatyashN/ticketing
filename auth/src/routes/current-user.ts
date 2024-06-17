@@ -6,4 +6,4 @@ router.get('/api/users/currentuser', (req, res) => {
     res.send('Hi rhere!!!')
 });
 
-export { router as currentuserRouter };
+export { router as currentUserRouter };
