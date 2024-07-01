@@ -20,3 +20,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+portForward: 
+  - resourceType: Service
+    resourceName: auth-mongo-srv
+    port: 27017
