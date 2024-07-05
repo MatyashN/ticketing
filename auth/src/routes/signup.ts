@@ -26,8 +26,6 @@ router.post(
       throw new BadRequestError('Email in use');
     }
 
-    console.log(req.body);
-
     const user = User.build({ email, password });
     await user.save();
 
@@ -38,7 +36,6 @@ router.post(
     },
       process.env.JWT_KEY!
     )
-
 
     // Store it on session object
     req.session = { jwt: userJwt };
