@@ -20,6 +20,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: nickolaydocker/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
 portForward: 
   - resourceType: Service
     resourceName: auth-mongo-srv

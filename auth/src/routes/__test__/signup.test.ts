@@ -32,5 +32,25 @@ it('returns a 400 with missing email and password', async () => {
     }).expect(400);
 
     return request(app).post('/api/users/signup').send({}).expect(400);
-
 });
+
+it('dissalows duplice emails', async () => {
+    await request(app).post('/api/users/signup').send({
+        email: 'test@test.com',
+        password: '123456789',
+    }).expect(201);
+
+    await  request(app).post('/api/users/signup').send({
+        email: 'test@test.com',
+        password: '123456789',
+    }).expect(400);
+})
+
+it ('sets a cookie after successful signup', async () => {
+   const response = await request(app).post('/api/users/signup').send({
+        email: 'test@test.com',
+        password: '123456789',
+    }).expect(201);
+
+    expect(response.get('Set-Cookie')).toBeDefined();
+})
