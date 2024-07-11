@@ -6,7 +6,7 @@ const MyForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {doRequest, errors} = UseRequestHook({
-        url: '/api/users/signup',
+        url: '/api/users/signin',
         method: 'post',
         body: {
             email, password
@@ -21,7 +21,7 @@ const MyForm = () => {
 
     return (
         <div className="container">
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -32,7 +32,7 @@ const MyForm = () => {
                     <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" />
                 </div>
                 {errors}
-                <button type="submit" className="btn btn-primary">Sign Up</button>
+                <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
         </div>
     );
