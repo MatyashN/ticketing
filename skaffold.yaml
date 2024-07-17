@@ -20,6 +20,16 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: nickolaydocker/tickets
+      context: tickets
+#    - image: us.gcr.io/ticketing-dev-426415/tickets
+#      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: nickolaydocker/client
       context: client
       docker:
@@ -32,3 +42,6 @@ portForward:
   - resourceType: Service
     resourceName: auth-mongo-srv
     port: 27017
+  - resourceType: Service
+    resourceName: tickets-mongo-srv
+    port: 27018
