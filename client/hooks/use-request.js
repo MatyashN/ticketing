@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
+import {useState} from "react";
 
-const UseRequestHook = ({ url, method, body, onSuccess }) => {
+const UseRequestHook = ({url, method, body, onSuccess}) => {
     const [errors, setErrors] = useState(null);
 
     const doRequest = async () => {
@@ -26,10 +26,10 @@ const UseRequestHook = ({ url, method, body, onSuccess }) => {
                     </ul>
                 </div>
             )
-         }
+        }
     }
 
-    return { doRequest, errors };
+    return {doRequest, errors};
 };
 
 export default UseRequestHook;

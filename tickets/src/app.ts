@@ -1,12 +1,12 @@
 import express from 'express';
 import 'express-async-errors';
-import { json } from 'body-parser';
+import {json} from 'body-parser';
 import cookieSession from 'cookie-session';
-import { currentUser, errorHandler, NotFoundError } from '@manickorg/common';
-import { createTicketRouter } from './routers/new';
-import { showTicketRouter } from './routers/show';
-import { indexTicketRouter } from './routers';
-import { updateTicketRouter } from './routers/update';
+import {currentUser, errorHandler, NotFoundError} from '@manickorg/common';
+import {createTicketRouter} from './routers/new';
+import {showTicketRouter} from './routers/show';
+import {indexTicketRouter} from './routers';
+import {updateTicketRouter} from './routers/update';
 
 const app = express();
 
@@ -29,4 +29,4 @@ app.all('*', async (req, res) => {
 
 app.use(errorHandler);
 
-export { app };
+export {app};

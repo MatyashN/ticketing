@@ -1,6 +1,6 @@
-import express, { Request, Response } from "express";
-import { Ticket } from "../models/ticket";
-import { NotFoundError, requireAuth } from "@manickorg/common";
+import express, {Request, Response} from "express";
+import {Ticket} from "../models/ticket";
+import {NotFoundError, requireAuth} from "@manickorg/common";
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get('/api/tickets/:id', requireAuth, async (req: Request, res: Response) 
     return res.send(ticket);
 })
 
-export { router as showTicketRouter }
+export {router as showTicketRouter}

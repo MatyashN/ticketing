@@ -6,14 +6,14 @@ deploy:
       - ./infra/k8s/*
 build:
   local:
-     push: false
-#  googleCloudBuild:
-#    projectId: ticketing-dev-426415
+    push: false
+  #  googleCloudBuild:
+  #    projectId: ticketing-dev-426415
   artifacts:
     - image: nickolaydocker/auth
       context: auth
-#    - image: us.gcr.io/ticketing-dev-426415/auth
-#      context: auth
+      #    - image: us.gcr.io/ticketing-dev-426415/auth
+      #      context: auth
       docker:
         dockerfile: Dockerfile
       sync:
@@ -22,8 +22,8 @@ build:
             dest: .
     - image: nickolaydocker/tickets
       context: tickets
-#    - image: us.gcr.io/ticketing-dev-426415/tickets
-#      context: tickets
+      #    - image: us.gcr.io/ticketing-dev-426415/tickets
+      #      context: tickets
       docker:
         dockerfile: Dockerfile
       sync:
@@ -38,10 +38,16 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-portForward: 
+portForward:
   - resourceType: Service
     resourceName: auth-mongo-srv
     port: 27017
   - resourceType: Service
     resourceName: tickets-mongo-srv
     port: 27018
+  - resourceType: Service
+    resourceName: nats-srv
+    port: 4222
+  - resourceType: Service
+    resourceName: nats-srv
+    port: 8222

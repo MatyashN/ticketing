@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { app } from './app';
+import {app} from './app';
 
 const start = async () => {
     try {
@@ -12,9 +12,11 @@ const start = async () => {
         }
 
         await mongoose.connect(process.env.MONGO_URI)
-        
+
         console.log('Connected to MongoDb');
-    } catch (err) { console.error(err) }
+    } catch (err) {
+        console.error(err)
+    }
 
     app.listen(3000, () => {
         console.log('Listening on port 3000!!!!!!!!');

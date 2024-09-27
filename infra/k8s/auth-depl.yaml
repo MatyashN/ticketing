@@ -4,7 +4,7 @@ metadata:
   name: auth-depl
 spec:
   replicas: 1
-  selector: 
+  selector:
     matchLabels:
       app: auth
   template:
@@ -26,7 +26,7 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata: 
+metadata:
   name: auth-srv
 spec:
   selector:

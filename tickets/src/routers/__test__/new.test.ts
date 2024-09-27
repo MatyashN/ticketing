@@ -1,8 +1,8 @@
 import request from 'supertest';
-import { app } from '../../app';
-import { Ticket } from '../../models/ticket';
+import {app} from '../../app';
+import {Ticket} from '../../models/ticket';
 
-export const createTicket = async ({ title, price }: { title: string, price: number }, cookie = global.signin()) => {
+export const createTicket = async ({title, price}: { title: string, price: number }, cookie = global.signin()) => {
     let res = await request(app)
         .post('/api/tickets')
         .set('Cookie', cookie)

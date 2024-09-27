@@ -1,13 +1,13 @@
 import express from 'express';
 import 'express-async-errors';
-import { json } from 'body-parser';
+import {json} from 'body-parser';
 
-import { currentUserRouter } from './routes/current-user';
-import { signinRouter } from './routes/signin';
-import { signoutRouter } from './routes/signout';
-import { signupRouter } from './routes/signup';
+import {currentUserRouter} from './routes/current-user';
+import {signinRouter} from './routes/signin';
+import {signoutRouter} from './routes/signout';
+import {signupRouter} from './routes/signup';
 import cookieSession from 'cookie-session';
-import { errorHandler, NotFoundError } from '@manickorg/common';
+import {errorHandler, NotFoundError} from '@manickorg/common';
 
 const app = express();
 
@@ -29,4 +29,4 @@ app.all('*', async (req, res) => {
 
 app.use(errorHandler);
 
-export { app };
+export {app};

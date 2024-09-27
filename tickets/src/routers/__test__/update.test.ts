@@ -1,7 +1,7 @@
 import request from 'supertest'
-import { app } from '../../app'
+import {app} from '../../app'
 import mongoose from 'mongoose'
-import { createTicket } from './new.test';
+import {createTicket} from './new.test';
 
 it('returns a 404 if the provided id does not exist', async () => {
     const id = new mongoose.Types.ObjectId().toHexString();
@@ -27,12 +27,12 @@ it('returns a 401 if the user is not authenticated', async () => {
 })
 
 it('returns a 401 if the user does not own the ticket', async () => {
-    const ticket = await createTicket({ title: 'title1', price: 25 });
+    const ticket = await createTicket({title: 'title1', price: 25});
 
     await request(app)
         .put(`/api/tickets/${ticket.id}`)
         .set('Cookie', global.signin())
-        .send({ title: 'ticket2', price: 30 })
+        .send({title: 'ticket2', price: 30})
         .expect(401);
 
 
@@ -40,7 +40,7 @@ it('returns a 401 if the user does not own the ticket', async () => {
 
 it('returns a 400 if the user provides an invalid title or price', async () => {
     const cookie = global.signin();
-    const ticket = await createTicket({ title: 'title1', price: 25 }, cookie);
+    const ticket = await createTicket({title: 'title1', price: 25}, cookie);
 
     await request(app)
         .put(`/api/tickets/${ticket.id}`)
@@ -80,13 +80,13 @@ it('updates the ticket provided valid inputs', async () => {
         newTitle = 'new ' + title,
         newPrice = price + 25,
         cookie = global.signin(),
-        ticket = await createTicket({ title, price }, cookie),
+        ticket = await createTicket({title, price}, cookie),
         updatedTicket = await request(app)
             .put(`/api/tickets/${ticket.id}`)
             .set('Cookie', cookie)
-            .send({ title: newTitle, price: newPrice })
+            .send({title: newTitle, price: newPrice})
             .expect(200)
 
-        expect(updatedTicket.body.title).toEqual(newTitle);
-        expect(updatedTicket.body.price).toEqual(newPrice);
+    expect(updatedTicket.body.title).toEqual(newTitle);
+    expect(updatedTicket.body.price).toEqual(newPrice);
 })

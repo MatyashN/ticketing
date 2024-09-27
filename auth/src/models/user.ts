@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Password } from "../services/password";
+import {Password} from "../services/password";
 
 export interface UserAttrs {
     email: string;
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         },
         versionKey: false,
     },
-    
+
 });
 
 userSchema.pre('save', async function (done) {
@@ -50,4 +50,4 @@ userSchema.statics.build = (attrs: UserAttrs) => {
 
 const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
 
-export { User };
+export {User};
