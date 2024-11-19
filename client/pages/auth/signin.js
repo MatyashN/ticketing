@@ -6,12 +6,9 @@ const MyForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {doRequest, errors} = UseRequestHook({
-        url: '/api/users/signin',
-        method: 'post',
-        body: {
+        url: '/api/users/signin', method: 'post', body: {
             email, password
-        },
-        onSuccess: () => Router.push('/')
+        }, onSuccess: () => Router.push('/')
     });
 
     const onSubmit = async (e) => {
@@ -19,8 +16,7 @@ const MyForm = () => {
         doRequest();
     };
 
-    return (
-        <div className="container">
+    return (<div className="container">
             <h1>Sign In</h1>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
@@ -36,8 +32,7 @@ const MyForm = () => {
                 {errors}
                 <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
-        </div>
-    );
+        </div>);
 };
 
 export default MyForm;

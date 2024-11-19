@@ -15,17 +15,14 @@ const UseRequestHook = ({url, method, body, onSuccess}) => {
 
             return response.data;
         } catch (err) {
-            debugger
-            setErrors(
-                <div className="alert alert-danger">
-                    <h4>Ooops....</h4>
-                    <ul className='my-0'>
-                        {err.response.data.errors.map(e => {
-                            return <li key={e.message} className=''>{e.message}</li>
-                        })}
-                    </ul>
-                </div>
-            )
+            setErrors(<div className="alert alert-danger">
+                <h4>Ooops....</h4>
+                <ul className='my-0'>
+                    {err.response.data.errors.map(e => {
+                        return <li key={e.message} className=''>{e.message}</li>
+                    })}
+                </ul>
+            </div>)
         }
     }
 

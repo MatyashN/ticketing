@@ -6,12 +6,9 @@ const MyForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {doRequest, errors} = UseRequestHook({
-        url: '/api/users/signup',
-        method: 'post',
-        body: {
+        url: '/api/users/signup', method: 'post', body: {
             email, password
-        },
-        onSuccess: () => Router.push('/')
+        }, onSuccess: () => Router.push('/')
     });
 
     const onSubmit = async (e) => {
@@ -19,25 +16,23 @@ const MyForm = () => {
         doRequest();
     };
 
-    return (
-        <div className="container">
-            <h1>Sign Up</h1>
-            <form onSubmit={onSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control"
-                           id="exampleInputEmail1" aria-describedby="emailHelp"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input value={password} onChange={e => setPassword(e.target.value)} type="password"
-                           className="form-control" id="exampleInputPassword1"/>
-                </div>
-                {errors}
-                <button type="submit" className="btn btn-primary">Sign Up</button>
-            </form>
-        </div>
-    );
+    return (<div className="container">
+        <h1>Sign Up</h1>
+        <form onSubmit={onSubmit}>
+            <div className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control"
+                       id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                <input value={password} onChange={e => setPassword(e.target.value)} type="password"
+                       className="form-control" id="exampleInputPassword1"/>
+            </div>
+            {errors}
+            <button type="submit" className="btn btn-primary">Sign Up</button>
+        </form>
+    </div>);
 };
 
 export default MyForm;
