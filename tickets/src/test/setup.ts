@@ -1,10 +1,17 @@
 import {MongoMemoryServer} from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import request from "supertest";
+import {app} from "../app";
+
 
 declare global {
     var signin: () => string[];
+    var createTicket: ({title, price}: { title: string, price: number }, cookie?: any) => Promise<any>;
 }
+
+
+jest.mock('../nats-wrapper');
 
 let mongo: any
 
@@ -18,6 +25,8 @@ beforeAll(async () => {
 })
 
 beforeEach(async () => {
+    jest.clearAllMocks();
+
     const collections = await mongoose.connection.db.collections();
 
     for (let collection of collections) {
@@ -54,4 +63,16 @@ global.signin = () => {
 
     // return a string thats the cookie with the encoded data
     return ['session=' + base64];
+}
+
+global.createTicket = async ({title, price}: { title: string, price: number }, cookie = global.signin()) => {
+    let res = await request(app)
+        .post('/api/tickets')
+        .set('Cookie', cookie)
+        .send({
+            title,
+            price,
+        }).expect(201);
+
+    return res.body;
 }

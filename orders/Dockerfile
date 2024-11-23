@@ -6,6 +6,4 @@ RUN npm install --omyt=dev
 
 COPY . .
 
-EXPOSE 3000 9229
-
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
